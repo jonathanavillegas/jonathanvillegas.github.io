@@ -6,73 +6,396 @@
     <title>CFD Heat Transfer Solver - Project Details</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .project-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            margin-bottom: 0;
+        * {
+            scroll-behavior: smooth;
         }
-        .project-header h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .project-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            background: white;
-        }
-        .project-content h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 0.5rem;
-        }
-        .project-content ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        .project-content li {
-            margin: 0.5rem 0;
-            color: #555;
-        }
-        .project-image {
-            width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
-            display: block;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+        
         .back-link {
             display: inline-block;
             margin: 2rem;
             color: #3498db;
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
             border: 2px solid #3498db;
-            border-radius: 4px;
-            transition: background 0.3s, color 0.3s;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .back-link:hover {
             background: #3498db;
             color: white;
+            transform: translateX(-3px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
         }
+        
+        .project-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e88e5 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .project-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-header .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-header .applications {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+        
+        .project-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: white;
+        }
+        
+        .project-content h2 {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: #1e3c72;
+            border-bottom: 3px solid #1e88e5;
+            padding-bottom: 0.75rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+        
+        .project-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2a5298;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .project-content h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #2a5298;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .project-content h5 {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            color: #1e3c72;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .project-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-content ul {
+            margin: 1.5rem 0;
+            padding-left: 2.5rem;
+        }
+        
+        .project-content li {
+            margin: 0.75rem 0;
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .project-content li strong {
+            color: #1e3c72;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #1e88e5;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-box h3 {
+            margin-top: 0;
+            color: #1e3c72;
+        }
+        
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .application-card {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .application-card:hover {
+            border-color: #1e88e5;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.2);
+        }
+        
+        .application-card h4 {
+            color: #1e3c72;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        .application-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        .project-image {
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px dashed #1e88e5;
+            border-radius: 12px;
+            color: #1e88e5;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
         .code-snippet {
-            background: #f4f4f4;
-            border-left: 4px solid #3498db;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 4px;
+            background: #1e1e1e;
+            border-left: 5px solid #1e88e5;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
             overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
+        
         .code-snippet pre {
             margin: 0;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+            font-size: 0.95rem;
+            color: #d4d4d4;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #1e88e5 0%, #2a5298 100%);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(30, 136, 229, 0.3);
+            transition: transform 0.2s ease;
+        }
+        
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(30, 136, 229, 0.4);
+        }
+        
+        .project-links {
+            margin: 2rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-links a {
+            color: white;
+            background: linear-gradient(135deg, #1e88e5 0%, #2a5298 100%);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(30, 136, 229, 0.3);
+        }
+        
+        .project-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(30, 136, 229, 0.4);
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .result-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .result-card:hover {
+            border-color: #1e88e5;
+            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.2);
+        }
+        
+        .result-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e88e5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-card .label {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .method-section {
+            margin: 2rem 0;
+        }
+        
+        .method-card {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-left: 4px solid #1e88e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .method-card:hover {
+            border-color: #1e88e5;
+            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .method-card h5 {
+            color: #1e3c72;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            margin-top: 0;
+        }
+        
+        .method-card p {
+            margin: 0.5rem 0;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .method-detail {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-left: 3px solid #2a5298;
+        }
+        
+        .method-detail strong {
+            color: #1e3c72;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-header .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .project-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .project-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .applications-grid,
+            .results-grid,
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -81,61 +404,125 @@
     
     <div class="project-header">
         <h1>CFD Heat Transfer Solver</h1>
-        <p style="font-size: 1.2rem; opacity: 0.9;">Finite difference methods for heat conduction with ablation modeling</p>
+        <p class="subtitle">Advanced Finite Difference Methods for Thermal Analysis</p>
+        <p class="applications">Thermal Protection Systems • Ablative Materials • Spacecraft Reentry</p>
     </div>
 
     <div class="project-content">
         <h2>Overview</h2>
-        <p>A comprehensive Python package for solving heat conduction problems using finite difference methods. Features include 1D and 2D steady-state solvers, transient heat conduction, and advanced 3D ablative heat shield modeling with material sublimation physics.</p>
+        <h3>A thermal modeling package designed for solving complex heat conduction problems</h3>
+        
+        <p>The package provides comprehensive tools for steady-state and transient thermal analysis, with specialized capabilities for modeling ablative materials used in spacecraft heat shields. The solvers handle 1-3D geometries, Dirichlet and Neumann boundary conditions, and material phase changes with high accuracy and computational efficiency.</p>
+
+        <div class="highlight-box">
+            <h3>Key Applications</h3>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <h4>🛡️ Thermal Protection</h4>
+                    <p>Design and optimization of thermal protection systems for extreme environments, including material selection and thickness optimization.</p>
+                </div>
+                <div class="application-card">
+                    <h4>🚀 Spacecraft Reentry</h4>
+                    <p>Modeling thermal protection systems for atmospheric reentry, predicting heat shield performance and material ablation rates under extreme heating conditions.</p>
+                </div>
+            </div>
+        </div>
 
         <h2>Key Features</h2>
         <ul>
-            <li><strong>1D and 2D Steady-State Solvers:</strong> Solve Poisson equation for heat conduction with Dirichlet and Neumann boundary conditions</li>
-            <li><strong>Transient Heat Conduction:</strong> Time-dependent 2D heat transfer with proper boundary condition handling</li>
-            <li><strong>3D Heat Shield Simulations:</strong> Cylindrical coordinate solver for reentry heat shield analysis</li>
-            <li><strong>Ablative Material Modeling:</strong> Tracks material sublimation, latent heat accumulation, and surface recession</li>
-            <li><strong>Grid Convergence:</strong> Source terms properly scaled for consistent results across different grid resolutions</li>
-            <li><strong>Boundary Conditions:</strong> Support for both Dirichlet (fixed temperature) and Neumann (fixed flux) boundary conditions</li>
-            <li><strong>Visualization:</strong> 2D animated plots, cylindrical plots, and r-z cross-sections for 3D analysis</li>
+            <li><strong>Steady State Analysis:</strong> 1D and 2D steady-state thermal solvers with support for user input boundary conditions (Dirichlet and Neumann), material properties, and source terms (heat generation/heat sink).</li>
+            <li><strong>Transient Thermal Analysis:</strong> Advanced time-dependent 2D heat transfer solver with implicit time-stepping for numerical stability and accurate temporal evolution</li>
+            <li><strong>3D Cylindrical Heat Shield Modeling:</strong> Specialized cylindrical coordinate solver for reentry heat shield analysis</li>
+            <li><strong>Advanced Ablation Physics:</strong> Sophisticated material sublimation model tracking latent heat accumulation, surface recession, and transient boundary evolution</li>
         </ul>
 
-        <h2>Technical Details</h2>
-        <p>The solver implements finite difference methods with proper handling of boundary conditions, grid convergence, and material phase changes. The ablation model tracks latent heat accumulation and material removal as elements reach sublimation temperature.</p>
-        
-        <p>Key technical achievements:</p>
+        <h2>Demonstrated Use Case: 3D Ablative Heat Shield Model</h2>
+
+        <h3>The Mission</h3>
+        <p>Model the performance of a circular ablative heat shield to ensure it can protect a spacecraft from extreme heat during reentry.</p>
+
+        <h3>Methods</h3>
+
+        <h4>Provided Parameters</h4>
         <ul>
-            <li>Implemented dynamic surface tracking for ablative materials</li>
-            <li>Developed energy balance model for sublimation process</li>
-            <li>Created adaptive boundary condition handling for receding surfaces</li>
-            <li>Ensured grid convergence through proper source term scaling</li>
+            <li><strong>Geometry:</strong> Circular heat shield in cylindrical coordinates (r, θ, z) with radius <em>R</em> and thickness</li>
+            <li><strong>Heat Flux Distribution:</strong> Radially varying flux based on reentry data. Symmetric about θ = 90° for 90° AoA, with 3D capability for future non-symmetric cases</li>
+            <li><strong>Material Properties:</strong> Thermal conductivity <em>k</em>, density <em>ρ</em>, specific heat <em>c<sub>p</sub></em>, sublimation temperature, and latent heat of sublimation</li>
         </ul>
+
+        <h4>Discretization</h4>
+        <p>Cylindrical coordinates (r, θ, z) model the circular geometry. Central difference scheme provides second-order spatial accuracy. Special handling at r=0 using L'Hôpital's rule avoids coordinate singularity.</p>
+
+        <h4>Numerical Methods</h4>
+        <ul>
+            <li><strong>Transient Analysis:</strong> Forward difference in time with implicit spatial discretization (first-order temporal, second-order spatial accuracy)</li>
+            <li><strong>Ablative Material Physics:</strong>
+                <ul>
+                    <li>Materials sublimate when sublimation temperature is reached</li>
+                    <li>Temperature clamped at sublimation point; excess heat accumulates as latent heat</li>
+                    <li>Material destroyed when latent heat threshold is met</li>
+                </ul>
+            </li>
+            <li><strong>Transient Boundary Evolution:</strong>
+                <ul>
+                    <li>Neumann boundary conditions applied via ghost nodes at surface</li>
+                    <li>Boundary condition dynamically moves to next node as surface material is destroyed</li>
+                    <li>Boolean arrays track surface, interior, and destroyed node states</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Results</h3>
+        <p></p>
+
+        <h2>Methodology</h2>
+        <p>The solver employs finite difference methods (FDM) to discretize the heat conduction equation. For steady-state problems, the Poisson equation is solved using iterative methods, while transient problems use implicit time-stepping for numerical stability.</p>
+        
+        <p>The ablation model implements a sophisticated energy balance approach: when material elements reach the sublimation temperature, latent heat is accumulated until sufficient energy is available for phase change. The surface then recedes, and boundary conditions are dynamically updated to reflect the new geometry.</p>
+        
+        <p>Grid convergence is ensured through proper scaling of source terms and validation studies. The cylindrical coordinate system enables accurate modeling of axisymmetric geometries common in aerospace applications.</p>
 
         <h2>Usage Example</h2>
+        <p>Here's how to run a 3D heat shield simulation:</p>
         <div class="code-snippet">
             <pre>from cfd.solvers.ablative_heat_shield import solve_heat_shield_3d
 
+# Run 3D cylindrical heat shield simulation
 r, theta, z, transient = solve_heat_shield_3d(
-    Nr=50, Ntheta=50, Nz=50, R=80, thickness=0.05,
-    time=150, dt=1, k=0.04, rho=270, cp=1100,
-    initial_temp=0, sub_temp=3500, sub_heat=2500000
+    Nr=50, Ntheta=50, Nz=50,      # Grid resolution
+    R=80, thickness=0.05,          # Geometry parameters
+    time=150, dt=1,                # Time stepping
+    k=0.04, rho=270, cp=1100,      # Material properties
+    initial_temp=0,                # Initial conditions
+    sub_temp=3500,                 # Sublimation temperature
+    sub_heat=2500000               # Latent heat of sublimation
 )</pre>
         </div>
 
-        <h2>Technologies</h2>
+        <h2>Technologies & Tools</h2>
         <div class="tech-stack">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">NumPy</span>
-            <span class="tech-tag">Matplotlib</span>
             <span class="tech-tag">SciPy</span>
+            <span class="tech-tag">Matplotlib</span>
             <span class="tech-tag">Finite Difference Methods</span>
             <span class="tech-tag">CFD</span>
             <span class="tech-tag">Heat Transfer</span>
             <span class="tech-tag">Ablation Modeling</span>
+            <span class="tech-tag">Numerical Methods</span>
+            <span class="tech-tag">Computational Physics</span>
+        </div>
+
+        <h2>Visualizations</h2>
+        <p>Visualization capabilities include animated 2D temperature fields, cylindrical coordinate plots, and cross-sectional analysis. These tools enable comprehensive understanding of thermal behavior and validation of results.</p>
+        <div class="image-placeholder">
+            📊 Add visualization images here (temperature contours, ablation progression, etc.)
         </div>
 
         <h2>Project Links</h2>
         <div class="project-links">
-            <a href="https://github.com/jonathanavillegas/cfd" target="_blank">View on GitHub</a>
+            <a href="https://github.com/jonathanavillegas/cfd" target="_blank">🔗 View on GitHub</a>
+            <a href="https://github.com/jonathanavillegas/cfd" target="_blank">📖 Documentation</a>
         </div>
     </div>
 
