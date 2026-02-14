@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFD Heat Transfer Solver - Project Details</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        .project-header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: white;
+        }
+        .project-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        .project-content ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .project-content li {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+        .project-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-block;
+            margin: 2rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .back-link:hover {
+            background: #3498db;
+            color: white;
+        }
+        .code-snippet {
+            background: #f4f4f4;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .code-snippet pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+    
+    <div class="project-header">
+        <h1>CFD Heat Transfer Solver</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9;">Finite difference methods for heat conduction with ablation modeling</p>
+    </div>
+
+    <div class="project-content">
+        <h2>Overview</h2>
+        <p>A comprehensive Python package for solving heat conduction problems using finite difference methods. Features include 1D and 2D steady-state solvers, transient heat conduction, and advanced 3D ablative heat shield modeling with material sublimation physics.</p>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li><strong>1D and 2D Steady-State Solvers:</strong> Solve Poisson equation for heat conduction with Dirichlet and Neumann boundary conditions</li>
+            <li><strong>Transient Heat Conduction:</strong> Time-dependent 2D heat transfer with proper boundary condition handling</li>
+            <li><strong>3D Heat Shield Simulations:</strong> Cylindrical coordinate solver for reentry heat shield analysis</li>
+            <li><strong>Ablative Material Modeling:</strong> Tracks material sublimation, latent heat accumulation, and surface recession</li>
+            <li><strong>Grid Convergence:</strong> Source terms properly scaled for consistent results across different grid resolutions</li>
+            <li><strong>Boundary Conditions:</strong> Support for both Dirichlet (fixed temperature) and Neumann (fixed flux) boundary conditions</li>
+            <li><strong>Visualization:</strong> 2D animated plots, cylindrical plots, and r-z cross-sections for 3D analysis</li>
+        </ul>
+
+        <h2>Technical Details</h2>
+        <p>The solver implements finite difference methods with proper handling of boundary conditions, grid convergence, and material phase changes. The ablation model tracks latent heat accumulation and material removal as elements reach sublimation temperature.</p>
+        
+        <p>Key technical achievements:</p>
+        <ul>
+            <li>Implemented dynamic surface tracking for ablative materials</li>
+            <li>Developed energy balance model for sublimation process</li>
+            <li>Created adaptive boundary condition handling for receding surfaces</li>
+            <li>Ensured grid convergence through proper source term scaling</li>
+        </ul>
+
+        <h2>Usage Example</h2>
+        <div class="code-snippet">
+            <pre>from cfd.solvers.ablative_heat_shield import solve_heat_shield_3d
+
+r, theta, z, transient = solve_heat_shield_3d(
+    Nr=50, Ntheta=50, Nz=50, R=80, thickness=0.05,
+    time=150, dt=1, k=0.04, rho=270, cp=1100,
+    initial_temp=0, sub_temp=3500, sub_heat=2500000
+)</pre>
+        </div>
+
+        <h2>Technologies</h2>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">Matplotlib</span>
+            <span class="tech-tag">SciPy</span>
+            <span class="tech-tag">Finite Difference Methods</span>
+            <span class="tech-tag">CFD</span>
+            <span class="tech-tag">Heat Transfer</span>
+            <span class="tech-tag">Ablation Modeling</span>
+        </div>
+
+        <h2>Project Links</h2>
+        <div class="project-links">
+            <a href="https://github.com/jonathanavillegas/cfd" target="_blank">View on GitHub</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Jonathan Villegas</p>
+    </footer>
+</body>
+</html>
+
