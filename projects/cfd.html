@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CFD Heat Transfer Solver - Project Details</title>
     <link rel="stylesheet" href="../styles.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         * {
             scroll-behavior: smooth;
@@ -186,9 +195,80 @@
         }
         
         .application-card p {
-            margin: 0;
+            margin: 0 0 1rem 0;
             font-size: 0.95rem;
             color: #666;
+        }
+        
+        .card-media {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: block;
+        }
+        
+        .card-media video {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+        
+        .equation-table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        
+        .equation-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 0.4rem 0.6rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .equation-table td {
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .equation-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .equation-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .equation-table .variable {
+            font-weight: 600;
+            color: #1e3c72;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .equations-layout {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            align-items: flex-start;
+        }
+        
+        .equations-column {
+            flex: 1;
+        }
+        
+        .table-column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        @media (max-width: 968px) {
+            .equations-layout {
+                flex-direction: column;
+            }
         }
         
         .project-image {
@@ -403,45 +483,194 @@
     <a href="../index.html" class="back-link">← Back to Portfolio</a>
     
     <div class="project-header">
-        <h1>CFD Heat Transfer Solver</h1>
-        <p class="subtitle">Advanced Finite Difference Methods for Thermal Analysis</p>
+        <h1>Heat Transfer Modeling Package</h1>
+        <p class="subtitle">Advanced Finite Difference Methods for Thermal Analysis and Ablative Materials</p>
         <p class="applications">Thermal Protection Systems • Ablative Materials • Spacecraft Reentry</p>
     </div>
 
     <div class="project-content">
-        <h2>Overview</h2>
-        <h3>A thermal modeling package designed for solving complex heat conduction problems</h3>
-        
+        <h2>A thermal modeling package designed for solving complex heat conduction problems</h2>
         <p>The package provides comprehensive tools for steady-state and transient thermal analysis, with specialized capabilities for modeling ablative materials used in spacecraft heat shields. The solvers handle 1-3D geometries, Dirichlet and Neumann boundary conditions, and material phase changes with high accuracy and computational efficiency.</p>
 
         <div class="highlight-box">
-            <h3>Key Applications</h3>
+            <h3>Key Features</h3>
             <div class="applications-grid">
                 <div class="application-card">
-                    <h4>🛡️ Thermal Protection</h4>
-                    <p>Design and optimization of thermal protection systems for extreme environments, including material selection and thickness optimization.</p>
+                    <h4>Steady State Analysis</h4>
+                    <p>1D and 2D steady-state thermal solvers with support for user input boundary conditions (Dirichlet and Neumann), material properties, and source terms (heat generation/heat sink)</p>
+                    <img src="pics/SteadyState2D.png" alt="Steady State Analysis" class="card-media" onerror="this.style.display='none'">
                 </div>
                 <div class="application-card">
-                    <h4>🚀 Spacecraft Reentry</h4>
-                    <p>Modeling thermal protection systems for atmospheric reentry, predicting heat shield performance and material ablation rates under extreme heating conditions.</p>
+                    <h4>Transient Analysis</h4>
+                    <p>2D transient thermal solvers with explicit time-stepping (first-order temporal, second-order spatial accuracy)</p>
+                    <video src="pics/transient2D.mp4" class="card-media" controls muted loop autoplay preload="none" onerror="this.style.display='none'"></video>
+                </div>
+                <div class="application-card">
+                    <h4>3D Cylindrical Heat Shield Modeling</h4>
+                    <p>Specialized cylindrical coordinate solver for reentry heat shield analysis</p>
+                    <video src="pics/transientHeatShield2D.mp4" class="card-media" controls muted loop autoplay preload="none" onerror="this.style.display='none'"></video>
+                </div>
+                <div class="application-card">
+                    <h4>Advanced Ablation Physics</h4>
+                    <p>Sophisticated material sublimation model tracking latent heat accumulation, surface recession, and transient boundary evolution</p>
+                    <video src="pics/transientCrossSection.mp4" class="card-media" controls muted loop autoplay preload="none" onerror="this.style.display='none'"></video>
                 </div>
             </div>
         </div>
-
-        <h2>Key Features</h2>
-        <ul>
-            <li><strong>Steady State Analysis:</strong> 1D and 2D steady-state thermal solvers with support for user input boundary conditions (Dirichlet and Neumann), material properties, and source terms (heat generation/heat sink).</li>
-            <li><strong>Transient Thermal Analysis:</strong> Advanced time-dependent 2D heat transfer solver with implicit time-stepping for numerical stability and accurate temporal evolution</li>
-            <li><strong>3D Cylindrical Heat Shield Modeling:</strong> Specialized cylindrical coordinate solver for reentry heat shield analysis</li>
-            <li><strong>Advanced Ablation Physics:</strong> Sophisticated material sublimation model tracking latent heat accumulation, surface recession, and transient boundary evolution</li>
-        </ul>
-
+        
         <h2>Demonstrated Use Case: 3D Ablative Heat Shield Model</h2>
 
         <h3>The Mission</h3>
         <p>Model the performance of a circular ablative heat shield to ensure it can protect a spacecraft from extreme heat during reentry.</p>
 
-        <h3>Methods</h3>
+        <h3>Model Methodology</h3>
+
+        <h4>Heat Transfer Equation</h4>
+        <p>Assuming internal gas convection is negligible, the differential equation we seek to solve is:</p>
+        <div class="equations-layout">
+            <div class="equations-column">
+                <div style="text-align: center; margin: 1rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
+                    $$
+                    \underset{\text{Storage}}{\rho c_p \frac{\partial T}{\partial t}}
+                    =
+                    \underset{\text{Diffusion}}{\nabla \cdot (k \nabla T)}
+                    +
+                    \underset{\text{Pyrolysis}}{\Delta H_r \,\frac{d\rho}{dt}}
+                    $$
+                </div>
+                
+                <div style="text-align: center; margin: 1rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
+                    $$
+                    \frac{d\rho}{dt}
+                    =
+                    - k_0 \exp\!\left(-\frac{E}{RT}\right)
+                    (\rho - \rho_r)
+                    $$
+                </div>
+            </div>
+            
+            <div class="table-column">
+                <div style="margin: 1rem 0;">
+                    <table class="equation-table">
+                        <thead>
+                            <tr>
+                                <th>Variable</th>
+                                <th>Description</th>
+                                <th>Units</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="variable">ρ</td>
+                                <td>Density of virgin material</td>
+                                <td>kg/m³</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">c<sub>p</sub></td>
+                                <td>Specific heat capacity</td>
+                                <td>J/(kg·K)</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">T</td>
+                                <td>Temperature</td>
+                                <td>K</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">t</td>
+                                <td>Time</td>
+                                <td>s</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">k</td>
+                                <td>Thermal conductivity</td>
+                                <td>W/(m·K)</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">ΔH<sub>r</sub></td>
+                                <td>Heat of reaction (pyrolysis</td>
+                                <td>J/kg</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">dρ/dt</td>
+                                <td>Rate of change of density</td>
+                                <td>kg/(m³·s)</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">k<sub>0</sub></td>
+                                <td>Arrhenius pre-exponential factor</td>
+                                <td>1/s</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">E</td>
+                                <td>Activation energy</td>
+                                <td>J/mol</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">R</td>
+                                <td>Universal gas constant</td>
+                                <td>J/(mol·K)</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">ρ<sub>r</sub></td>
+                                <td>Char density</td>
+                                <td>kg/m³</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p style="font-size: 0.9rem; color: #666; font-style: italic; margin-top: 0.5rem;">
+            Source: <a href="https://ntrs.nasa.gov/api/citations/20170011453/downloads/20170011453.pdf" target="_blank" style="color: #1e88e5;">Beck, R. A. S. (2017). Ablative Thermal Protection Systems Fundamentals. NASA Ames Research Center.</a>
+        </p>
+        <p>In order to model the heat flux applied to the surface, we use a flux (Neumann) boundary condition of the form:</p>
+        <div class="equations-layout">
+            <div class="equations-column">
+                <div style="text-align: center; margin: 1rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
+                    $$
+                    - k \frac{\partial T}{\partial z}
+                    =
+                    q''_{\text{applied}}
+                    $$
+                </div>
+            </div>
+            
+            <div class="table-column">
+                <div style="margin: 1rem 0;">
+                    <table class="equation-table">
+                        <thead>
+                            <tr>
+                                <th>Variable</th>
+                                <th>Description</th>
+                                <th>Units</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="variable">k</td>
+                                <td>Thermal conductivity</td>
+                                <td>W/(m·K)</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">T</td>
+                                <td>Temperature</td>
+                                <td>K</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">z</td>
+                                <td>Thickness dimension (axial direction)</td>
+                                <td>m</td>
+                            </tr>
+                            <tr>
+                                <td class="variable">q''<sub>applied</sub></td>
+                                <td>Applied heat flux</td>
+                                <td>W/m²</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
         <h4>Provided Parameters</h4>
         <ul>
@@ -529,6 +758,7 @@ r, theta, z, transient = solve_heat_shield_3d(
     <footer>
         <p>&copy; 2024 Jonathan Villegas</p>
     </footer>
+    
 </body>
 </html>
 
