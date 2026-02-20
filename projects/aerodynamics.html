@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finite Wing Aerodynamics - Project Details</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        html {
+            scroll-padding-top: 2rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 2rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .back-link:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(-3px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e88e5 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .project-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-header .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-header .applications {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            padding: 2rem 1rem;
+            background: white;
+            border-right: 2px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .project-content {
+            flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: white;
+            position: relative;
+        }
+        
+        
+        .sidebar h5 {
+            margin: 0 0 1rem 0;
+            color: #1e3c72;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar ul ul {
+            margin-left: 1rem;
+            margin-top: 0.25rem;
+        }
+        
+        .sidebar ul ul ul {
+            margin-left: 1.5rem;
+        }
+        
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar a {
+            color: #444;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.4rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar a:hover {
+            background: #f0f7ff;
+            color: #1e88e5;
+            padding-left: 0.75rem;
+        }
+        
+        .sidebar a.h2-link {
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 0.95rem;
+        }
+        
+        .sidebar a.h3-link {
+            font-weight: 500;
+            color: #2a5298;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar a.h4-link {
+            font-weight: 400;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .sidebar li.has-children > a {
+            cursor: pointer;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+        
+        .sidebar li.has-children > a::after {
+            content: '▶';
+            position: absolute;
+            right: 0.5rem;
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+            color: #666;
+        }
+        
+        .sidebar li.has-children:not(.collapsed) > a::after {
+            content: '▼';
+        }
+        
+        .sidebar li.has-children.collapsed > ul {
+            display: none;
+        }
+        
+        .sidebar li.has-children:not(.collapsed) > ul {
+            display: block;
+        }
+        
+        .project-content h2 {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: #1e3c72;
+            border-bottom: 3px solid #1e88e5;
+            padding-bottom: 0.75rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+        
+        .project-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2a5298;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .project-content h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #2a5298;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .project-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #1e88e5;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.1);
+        }
+        
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .application-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .application-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.15);
+            border-color: #1e88e5;
+        }
+        
+        .application-card h4 {
+            color: #1e3c72;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        .application-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .card-media {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        .code-snippet {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .code-snippet pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #1e88e5 0%, #2a5298 100%);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(30, 136, 229, 0.3);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-links a {
+            color: white;
+            background: linear-gradient(135deg, #1e88e5 0%, #2a5298 100%);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(30, 136, 229, 0.3);
+        }
+        
+        .project-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(30, 136, 229, 0.4);
+        }
+        
+        @media (max-width: 1000px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+                position: relative;
+                max-height: none;
+                padding: 1rem;
+            }
+            
+            .project-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .project-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+    
+    <div class="project-header">
+        <h1>Finite Wing Aerodynamics</h1>
+        <p class="subtitle">Panel Method Implementation for Wing Performance Analysis</p>
+        <p class="applications">Aerodynamics • Propeller-Wing Interaction • Lift Distribution Analysis</p>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="sidebar">
+            <h5>Contents</h5>
+            <ul>
+                <li><a href="#overview" class="h2-link">Overview</a></li>
+                <li><a href="#key-features" class="h3-link">Key Features</a></li>
+                <li class="has-children">
+                    <a href="#use-case" class="h2-link">Demonstrated Use Case</a>
+                    <ul>
+                        <li><a href="#mission" class="h3-link">The Mission</a></li>
+                        <li class="has-children">
+                            <a href="#methodology" class="h3-link">Model Methodology</a>
+                            <ul>
+                                <li><a href="#panel-method" class="h4-link">Panel Method</a></li>
+                                <li><a href="#propeller-effects" class="h4-link">Propeller Effects</a></li>
+                                <li><a href="#numerical-solution" class="h4-link">Numerical Solution</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#results" class="h3-link">Results</a></li>
+                    </ul>
+                </li>
+                <li><a href="#model-efficacy" class="h2-link">Model Efficacy</a></li>
+                <li><a href="#future-work" class="h2-link">Future Work</a></li>
+                <li><a href="#technologies" class="h2-link">Technologies & Tools</a></li>
+                <li><a href="#links" class="h2-link">Project Links</a></li>
+            </ul>
+        </div>
+
+        <div class="project-content">
+            <h2 id="overview">A computational aerodynamics analysis tool for finite wing performance</h2>
+            <p>This MATLAB implementation provides comprehensive finite wing aerodynamics analysis using panel methods. The solver calculates lift distributions, induced velocities, and effective angles of attack, with specialized capabilities for modeling propeller-wing interactions and their effects on wing performance.</p>
+
+            <div class="highlight-box">
+                <h3 id="key-features">Key Features</h3>
+                <div class="applications-grid">
+                    <div class="application-card">
+                        <h4>Panel Method Solver</h4>
+                        <p>Discretized wing span analysis using vortex panel methods to calculate circulation distribution and induced velocities</p>
+                    </div>
+                    <div class="application-card">
+                        <h4>Propeller-Wing Interaction</h4>
+                        <p>Analysis of propeller slipstream effects on wing performance, including velocity augmentation in propeller wake regions</p>
+                    </div>
+                    <div class="application-card">
+                        <h4>Lift Distribution Analysis</h4>
+                        <p>Spanwise lift coefficient and circulation distribution calculations with iterative convergence to steady-state solutions</p>
+                    </div>
+                    <div class="application-card">
+                        <h4>Comparative Studies</h4>
+                        <p>Side-by-side comparison of wing performance with and without propeller effects to quantify interaction benefits</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="use-case">Demonstrated Use Case: Propeller-Wing Interaction Analysis</h2>
+
+            <h3 id="mission">The Mission</h3>
+            <p>Analyze the aerodynamic performance of a finite wing with and without propeller effects to understand how propeller slipstream enhances lift generation and affects spanwise lift distribution.</p>
+
+            <h3 id="methodology">Model Methodology</h3>
+
+            <h4 id="panel-method">Panel Method</h4>
+            <p>The wing is discretized into panels along the span, with each panel represented by a bound vortex. The trailing vortices extend downstream, creating an induced velocity field that affects the effective angle of attack at each panel location.</p>
+
+            <h4 id="propeller-effects">Propeller Effects</h4>
+            <p>Propeller slipstream creates an accelerated flow region behind the propeller disk. The velocity augmentation is calculated using actuator disk theory, where the velocity behind the propeller is determined by the thrust, propeller radius, and freestream conditions.</p>
+
+            <h4 id="numerical-solution">Numerical Solution</h4>
+            <p>The solution is obtained through an iterative process:</p>
+            <ul>
+                <li><strong>Initialization:</strong> Start with zero induced velocity assumption</li>
+                <li><strong>Circulation Calculation:</strong> Compute bound vortex strength from effective angle of attack and lift coefficient</li>
+                <li><strong>Induced Velocity:</strong> Calculate induced velocity at each panel from trailing vortices</li>
+                <li><strong>Convergence:</strong> Iterate until circulation distribution converges to steady-state</li>
+            </ul>
+
+            <h3 id="results">Results</h3>
+            <p>The analysis reveals significant differences in lift distribution between cases with and without propeller effects. The propeller slipstream increases local velocities in the wake region, leading to enhanced lift generation and modified spanwise lift distribution.</p>
+
+            <h2 id="model-efficacy">Model Efficacy</h2>
+            <p>The panel method implementation successfully captures the essential physics of finite wing aerodynamics, including three-dimensional effects and propeller-wing interactions. The iterative solver converges to stable solutions, providing accurate lift distributions and performance metrics.</p>
+
+            <h2 id="future-work">Future Work</h2>
+            <p>Future enhancements could include unsteady aerodynamics, compressibility effects, and more sophisticated propeller models incorporating rotational effects and non-uniform slipstream distributions.</p>
+
+            <h2 id="technologies">Technologies & Tools</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">MATLAB</span>
+                <span class="tech-tag">Panel Methods</span>
+                <span class="tech-tag">Aerodynamics</span>
+                <span class="tech-tag">Vortex Methods</span>
+                <span class="tech-tag">Propeller Theory</span>
+                <span class="tech-tag">Numerical Methods</span>
+            </div>
+
+            <h2 id="links">Project Links</h2>
+            <div class="project-links">
+                <a href="#" target="_blank">🔗 View on GitHub</a>
+                <a href="#" target="_blank">📖 Documentation</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Jonathan Villegas</p>
+    </footer>
+    
+    <script>
+        // Handle collapsible sidebar menus
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (!sidebar) return;
+            
+            const itemsWithChildren = sidebar.querySelectorAll('li.has-children');
+            
+            // Start all items collapsed
+            itemsWithChildren.forEach(item => {
+                item.classList.add('collapsed');
+            });
+            
+            itemsWithChildren.forEach(item => {
+                // Get the first anchor tag that is a direct child
+                const link = item.children[0];
+                
+                if (!link || link.tagName !== 'A') return;
+                
+                // Prevent default navigation when clicking on parent items
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    item.classList.toggle('collapsed');
+                });
+                
+                // Allow child links to navigate normally
+                const childLinks = item.querySelectorAll('ul a');
+                childLinks.forEach(childLink => {
+                    childLink.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Allow normal navigation
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

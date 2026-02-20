@@ -19,7 +19,7 @@
         .hero-section {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e88e5 100%);
             color: white;
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -100,10 +100,121 @@
             text-decoration: none;
             transition: opacity 0.3s;
             font-weight: 500;
+            display: flex;
+            align-items: center;
         }
         
         nav a:hover {
             opacity: 0.8;
+        }
+        
+        .email-icon {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            margin-right: 0;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            padding: 2rem 1rem;
+            background: white;
+            border-right: 2px solid #e0e0e0;
+            position: sticky;
+            top: 80px;
+            align-self: flex-start;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+        
+        .sidebar h5 {
+            margin: 0 0 1rem 0;
+            color: #1e3c72;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar a {
+            color: #444;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.4rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+        
+        .sidebar ul ul a {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #666;
+            padding-left: 1rem;
+        }
+        
+        .sidebar a:hover {
+            background: #f0f7ff;
+            color: #1e88e5;
+            padding-left: 0.75rem;
+        }
+        
+        .sidebar ul ul a:hover {
+            padding-left: 1.25rem;
+        }
+        
+        .sidebar li.has-children > a {
+            cursor: pointer;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+        
+        .sidebar li.has-children > a::after {
+            content: '▶';
+            position: absolute;
+            right: 0.5rem;
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+            color: #666;
+        }
+        
+        .sidebar li.has-children:not(.collapsed) > a::after {
+            content: '▼';
+        }
+        
+        .sidebar li.has-children.collapsed > ul {
+            display: none;
+        }
+        
+        .sidebar li.has-children:not(.collapsed) > ul {
+            display: block;
+        }
+        
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         section {
@@ -128,10 +239,33 @@
             font-weight: 600;
         }
         
-        #about p {
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .profile-picture {
+            flex: 0 0 300px;
+            max-width: 300px;
+        }
+        
+        .profile-picture img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
             font-size: 1.1rem;
             color: #444;
             line-height: 1.8;
+            margin-bottom: 1.5rem;
         }
         
         #projects h2 {
@@ -145,7 +279,7 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -157,6 +291,25 @@
             padding: 2rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .project-card-content {
+            flex: 1;
+        }
+        
+        .project-card-video {
+            flex: 0 0 300px;
+            max-width: 100%;
+        }
+        
+        .project-card-video video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
         
         .project-card:hover {
@@ -172,7 +325,7 @@
             font-weight: 600;
         }
         
-        .project-card p {
+        .project-card-content p {
             color: #666;
             margin-bottom: 1.5rem;
             line-height: 1.8;
@@ -225,6 +378,90 @@
             box-shadow: 0 4px 8px rgba(30, 136, 229, 0.4);
         }
         
+        #experience {
+            background: white;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        #experience h2 {
+            color: #1e3c72;
+            border-bottom: 3px solid #1e88e5;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+        
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .experience-title {
+            color: #1e3c72;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .experience-company {
+            color: #2a5298;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .experience-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-date {
+            font-weight: 500;
+        }
+        
+        .experience-location {
+            color: #888;
+        }
+        
+        .experience-description {
+            margin-top: 1rem;
+        }
+        
+        .experience-description ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .experience-description li {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+        
         #contact {
             background: white;
             text-align: center;
@@ -246,6 +483,26 @@
             color: #444;
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            margin: 1.5rem 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info a {
+            color: #1e88e5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #1e3c72;
+            text-decoration: underline;
         }
         
         .social-links {
@@ -307,12 +564,56 @@
             
             #about h2,
             #projects h2,
+            #experience h2,
             #contact h2 {
                 font-size: 1.8rem;
             }
             
+            .experience-header {
+                flex-direction: column;
+            }
+            
+            .experience-meta {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                flex-direction: column;
+            }
+            
+            .project-card-video {
+                flex: 1;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+                position: relative;
+                top: 0;
+                max-height: none;
+                padding: 1rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .profile-picture {
+                flex: 1;
+                max-width: 100%;
+                margin: 0 auto;
             }
         }
     </style>
@@ -322,55 +623,247 @@
         <nav>
             <h1>Jonathan Villegas</h1>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://github.com/jonathanavillegas" target="_blank">GitHub</a></li>
+                <li><a href="mailto:jonathanvillegas2020@gmail.com">
+                    <svg class="email-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a></li>
             </ul>
         </nav>
     </header>
 
     <div class="hero-section">
         <h1>Jonathan Villegas</h1>
-        <p class="subtitle">Computational Fluid Dynamics & Thermal Engineering</p>
-        <p class="tagline">Aerospace • Nuclear Energy • Thermal Protection Systems</p>
+        <p class="subtitle">Mechanical & Thermal Engineer</p>
+        <p class="tagline">Thermal Analysis • Computational Modeling • Nuclear Engineering</p>
     </div>
 
+    <div class="content-wrapper">
+        <div class="sidebar">
+            <h5>Navigation</h5>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li class="has-children">
+                    <a href="#projects">Projects</a>
+                    <ul>
+                        <li><a href="#project-heat-transfer">Heat Transfer Modeling</a></li>
+                        <li><a href="#project-aerodynamics">Finite Wing Aerodynamics</a></li>
+                        <li><a href="#project-cam">2D CAM Software</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">
+                    <a href="#experience">Experience</a>
+                    <ul>
+                        <li><a href="#exp-naval-nuclear">Naval Nuclear Laboratory</a></li>
+                        <li><a href="#exp-eden-geopower">Eden GeoPower</a></li>
+                        <li><a href="#exp-rapid-production">Rapid Production Lab</a></li>
+                        <li><a href="#exp-munch">Munch Industries</a></li>
+                        <li><a href="#exp-copeland">Copeland Corp.</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
     <section id="about">
         <h2>About Me</h2>
-        <p>Engineering student passionate about computational fluid dynamics, heat transfer, and numerical methods. I develop finite difference solvers for complex thermal problems, including ablative heat shield modeling for reentry applications.</p>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I am a Mechanical Engineer with a B.S.E. from the University of Pennsylvania (Magna Cum Laude), concentrating in Energy, Fluids, & Thermal Systems. I am currently working as a Thermal/Hydraulic Nuclear Engineer at Naval Nuclear Laboratory, where I model fluid and thermal behavior in nuclear reactors and analyze thermal effects to optimize reactor performance.</p>
+                <p>I'm passionate about solving thermal engineering problems with applications in clean energy and aerodynamics. My experience spans nuclear engineering, thermal analysis, and computational modeling, with a strong foundation in thermodynamics, fluid mechanics, and heat/mass transfer.</p>
+            </div>
+            <div class="profile-picture">
+                <img src="pics/profile_pic.JPG" alt="Jonathan Villegas" onerror="this.style.display='none'">
+            </div>
+        </div>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
         <div class="projects-grid">
-            <div class="project-card">
-                <h3>CFD Heat Transfer Solver</h3>
-                <p>Finite difference solver for heat conduction problems with ablation modeling. Features 1D/2D steady-state and transient solvers, 3D cylindrical heat shield simulations, and material sublimation physics.</p>
-                <div class="project-links">
-                    <a href="https://github.com/jonathanavillegas/cfd" target="_blank">GitHub</a>
-                    <a href="projects/cfd.html">Details</a>
+            <div class="project-card" id="project-heat-transfer">
+                <div class="project-card-content">
+                    <h3>Heat Transfer Modeling Package</h3>
+                    <p>This Python package provides comprehensive thermal modeling capabilities for steady-state and transient thermal analysis, with specialized capabilities for modeling ablative materials used in spacecraft heat shields. Features include 1D/2D steady-state and transient solvers, 3D cylindrical heat shield simulations, and advanced ablation physics with material sublimation modeling.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/jonathanavillegas/cfd" target="_blank">GitHub</a>
+                        <a href="projects/cfd.html">Details</a>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Heat Transfer Modeling</span>
+                        <span class="tech-tag">Finite Difference Methods</span>
+                        <span class="tech-tag">Ablation Modeling</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">SciPy</span>
+                        <span class="tech-tag">Matplotlib</span>
+                    </div>
                 </div>
-                <div class="tech-stack">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">NumPy</span>
-                    <span class="tech-tag">Matplotlib</span>
-                    <span class="tech-tag">CFD</span>
+                <div class="project-card-video">
+                    <video src="projects/pics/transientHeatShield2D.mp4" controls muted loop autoplay preload="none" onerror="this.style.display='none'"></video>
                 </div>
             </div>
-            <!-- Add more project cards here as you create them -->
+            
+            <div class="project-card" id="project-aerodynamics">
+                <div class="project-card-content">
+                    <h3>Finite Wing Aerodynamics</h3>
+                    <p>MATLAB implementation of panel method solver for finite wing aerodynamics analysis. Features include lift distribution calculations, induced velocity analysis, and propeller-wing interaction modeling. The solver uses iterative vortex panel methods to compute circulation distributions and quantify the effects of propeller slipstream on wing performance.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank">GitHub</a>
+                        <a href="projects/aerodynamics.html">Details</a>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">MATLAB</span>
+                        <span class="tech-tag">Panel Methods</span>
+                        <span class="tech-tag">Aerodynamics</span>
+                        <span class="tech-tag">Vortex Methods</span>
+                        <span class="tech-tag">Propeller Theory</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" id="project-cam">
+                <div class="project-card-content">
+                    <h3>2D CAM Software</h3>
+                    <p>Educational 2D CAM software that enables students to draw designs on a computer and immediately cut them on a CNC machine. Features automated draw-to-GCode conversion and intelligent auto Z-axis homing for safe and accurate machining operations. The system streamlines the design-to-manufacturing workflow, making CNC machining more accessible in educational environments.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank">GitHub</a>
+                        <a href="projects/cam-software.html">Details</a>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">GCode</span>
+                        <span class="tech-tag">CNC Machining</span>
+                        <span class="tech-tag">CAD/CAM</span>
+                        <span class="tech-tag">Machine Control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        
+        <div class="experience-item" id="exp-naval-nuclear">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-title">Thermal/Hydraulic Nuclear Engineer</h3>
+                    <h4 class="experience-company">Naval Nuclear Laboratory</h4>
+                </div>
+            </div>
+            <div class="experience-meta">
+                <span class="experience-date">July 2025 - Present</span>
+                <span class="experience-location">Pittsburgh, PA</span>
+            </div>
+            <div class="experience-description">
+                <ul>
+                    <li>Modeled fluid and thermal behavior within the nuclear reactor aboard the Seawolf-class submarine defining safe power capabilities for all reactor conditions</li>
+                    <li>Analyzed thermal effects of oxide blistering using Thermal Desktop justifying 4% increase in thermal margin</li>
+                    <li>Researched new experimental data to remove conservatism from corrosion calculations leading to a 5% increase in thermal performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item" id="exp-eden-geopower">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-title">R&D Engineering Intern</h3>
+                    <h4 class="experience-company">Eden GeoPower</h4>
+                </div>
+            </div>
+            <div class="experience-meta">
+                <span class="experience-date">May 2024 - August 2024</span>
+                <span class="experience-location">Boston, MA</span>
+            </div>
+            <div class="experience-description">
+                <ul>
+                    <li>Designed pneumatic switches enabling the analysis of electric pulses without dangerous arcing</li>
+                    <li>Developed and machined a H-field probe to measure high amperage DC pulses within 2% error</li>
+                    <li>Designed PCBs for the control system of a Marx pulse generator improving manufacturability</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item" id="exp-rapid-production">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-title">Lab Supervisor</h3>
+                    <h4 class="experience-company">Rapid Production Laboratory</h4>
+                </div>
+            </div>
+            <div class="experience-meta">
+                <span class="experience-date">January 2022 - May 2024</span>
+                <span class="experience-location">Philadelphia, PA</span>
+            </div>
+            <div class="experience-description">
+                <ul>
+                    <li>Assisted graduate and undergraduate students with their designs to improve manufacturability</li>
+                    <li>Sliced CAD files to be 3D printed and managed operation of all 3D printers</li>
+                    <li>Diagnosed and fixed broken laser cutters and 3D printers to limit downtime</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item" id="exp-munch">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-title">Lead Mechanical Engineer</h3>
+                    <h4 class="experience-company">Munch Industries</h4>
+                </div>
+            </div>
+            <div class="experience-meta">
+                <span class="experience-date">October 2023 - January 2024</span>
+                <span class="experience-location">Philadelphia, PA</span>
+            </div>
+            <div class="experience-description">
+                <ul>
+                    <li>Led a team of engineers to develop an automated boba machine, delegating tasks and setting timelines</li>
+                    <li>Designed a valve system and dispensing helix, getting powder output within 5% of desired mass</li>
+                    <li>Initiated team focus on food safety, addressing issues with unsafe 3D printed parts</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item" id="exp-copeland">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-title">Mechanical Engineering Co-Op</h3>
+                    <h4 class="experience-company">Copeland Corp.</h4>
+                </div>
+            </div>
+            <div class="experience-meta">
+                <span class="experience-date">May 2023 - August 2023</span>
+                <span class="experience-location">Sidney, OH</span>
+            </div>
+            <div class="experience-description">
+                <ul>
+                    <li>Developed VBA scripts to fully automate data entry, analysis, and validation of lab test results eliminating ~40 work hours/month</li>
+                    <li>Identified valve over-torquing causing component cracking, preventing ~$500k in damages</li>
+                    <li>Analyzed metrology data using knowledge of GD&T to determine usability of out-of-spec. parts saving ~$100k in manufacturing cost</li>
+                </ul>
+            </div>
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
         <p>Feel free to reach out for collaborations or questions about my projects.</p>
+        <div class="contact-info">
+            <p><strong>Email:</strong> <a href="mailto:jonathanvillegas2020@gmail.com">jonathanvillegas2020@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:626-710-3722">626-710-3722</a></p>
+        </div>
         <div class="social-links">
             <a href="https://github.com/jonathanavillegas" target="_blank">GitHub</a>
         </div>
     </section>
+        </div>
+    </div>
 
     <footer>
-        <p>&copy; 2024 Jonathan Villegas</p>
+        <p>&copy; 2026 Jonathan Villegas</p>
     </footer>
     
     <script>
@@ -379,6 +872,42 @@
             if (window.location.hash === '') {
                 window.scrollTo(0, 0);
             }
+        });
+        
+        // Handle collapsible sidebar menus
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (!sidebar) return;
+            
+            const itemsWithChildren = sidebar.querySelectorAll('li.has-children');
+            
+            // Start all items collapsed
+            itemsWithChildren.forEach(item => {
+                item.classList.add('collapsed');
+            });
+            
+            itemsWithChildren.forEach(item => {
+                // Get the first anchor tag that is a direct child
+                const link = item.children[0];
+                
+                if (!link || link.tagName !== 'A') return;
+                
+                // Prevent default navigation when clicking on parent items
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    item.classList.toggle('collapsed');
+                });
+                
+                // Allow child links to navigate normally
+                const childLinks = item.querySelectorAll('ul a');
+                childLinks.forEach(childLink => {
+                    childLink.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Allow normal navigation
+                    });
+                });
+            });
         });
     </script>
 </body>

@@ -306,7 +306,7 @@
         
         .applications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -657,17 +657,16 @@
                         <li><a href="#results" class="h3-link">Results</a></li>
                     </ul>
                 </li>
-                <li><a href="#methodology-section" class="h2-link">Methodology</a></li>
-                <li><a href="#usage" class="h2-link">Usage Example</a></li>
+                <li><a href="#model-efficacy" class="h2-link">Model Efficacy</a></li>
+                <li><a href="#future-work" class="h2-link">Future Work</a></li>
                 <li><a href="#technologies" class="h2-link">Technologies & Tools</a></li>
-                <li><a href="#visualizations" class="h2-link">Visualizations</a></li>
                 <li><a href="#links" class="h2-link">Project Links</a></li>
             </ul>
     </div>
 
     <div class="project-content">
         <h2 id="overview">A thermal modeling package designed for solving complex heat conduction problems</h2>
-        <p>This Python package provides comprehensive thermal modeling capabilities for steady-state and transient thermal analysis, with specialized capabilities for modeling ablative materials used in spacecraft heat shields. The solvers handle 1-3D geometries, Dirichlet and Neumann boundary conditions, and material phase changes with high accuracy and computational efficiency.</p>
+        <p>This Python package provides comprehensive thermal modeling capabilities for steady-state and transient thermal analysis, with specialized capabilities for modeling ablative materials used in spacecraft heat shields. The solvers handle 1-3D geometries, Dirichlet and Neumann boundary conditions, and material phase changes.</p>
 
         <div class="highlight-box">
             <h3 id="key-features">Key Features</h3>
@@ -689,7 +688,7 @@
                 </div>
                 <div class="application-card">
                     <h4>Advanced Ablation Physics</h4>
-                    <p>Sophisticated material sublimation model tracking latent heat accumulation, surface recession, and transient boundary evolution</p>
+                    <p>Material pyrolysis and sublimation model tracking latent heat accumulation, surface recession, and transient boundary evolution</p>
                     <video src="pics/transientCrossSection.mp4" class="card-media" controls muted loop autoplay preload="none" onerror="this.style.display='none'"></video>
                 </div>
             </div>
@@ -703,7 +702,7 @@
         <h3 id="methodology">Model Methodology</h3>
 
         <h4 id="heat-transfer-eq">Heat Transfer Equation</h4>
-        <p>Assuming internal gas convection is negligible, the differential equation we seek to solve is:</p>
+        <p>Assuming internal gas convection is negligible, the following differential equation is used to model the thermal behavior of the material:</p>
         <div class="equations-layout">
             <div class="equations-column">
                 <div style="text-align: center; margin: 1rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
@@ -801,10 +800,10 @@
             Source: <a href="https://ntrs.nasa.gov/api/citations/20170011453/downloads/20170011453.pdf" target="_blank" style="color: #1e88e5;">Beck, R. A. S. (2017). Ablative Thermal Protection Systems Fundamentals. NASA Ames Research Center.</a>
         </p>
         <p>This equation includes the terms for storage, diffusion, and pyrolysis. The pyrolysis term is responsible for the ablation of the material, and is derived from the Arrhenius equation. The Arrhenius equation is a mathematical model that describes the rate of a chemical reaction as a function of temperature.</p>
-        <p>In order to model the destruction of the material, it is assumed all materials are destroyed via sublimation. A threshold sublimation temperature is used. When the temperature of a node reaches the threshold temperature, the temperature does not raise. Instead all additional thermal energy goes to latent heat of sublimation. When the latent heat threshold is reached, the node is marked as destroyed. The flux condition is then applied to the node directly below and the surface is updated.</p>
+        <p>To model the destruction of the material, it is assumed all materials are destroyed via sublimation. A threshold sublimation temperature is used. When the temperature of a node reaches the threshold temperature, the temperature does not raise. Instead all additional thermal energy goes to latent heat of sublimation. When the latent heat threshold is reached, the node is marked as destroyed. The flux condition is then applied to the node directly below and the surface is updated.</p>
         <p><strong>Sublimation temperature:</strong> <em>T<sub>sub</sub></em> [K]</p>
         <p><strong>Latent heat of sublimation:</strong> <em>ΔH<sub>sub</sub></em> [J/kg]</p>
-        <p>In order to model the heat flux applied to the surface, we use a flux (Neumann) boundary condition of the form:</p>
+        <p>To model the heat flux applied to the surface, a flux (Neumann) boundary condition is used of the form:</p>
         <div class="equations-layout">
             <div class="equations-column">
                 <div style="text-align: center; margin: 1rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
@@ -903,54 +902,39 @@
         <h3 id="results">Results</h3>
         <p></p>
 
-        <h2 id="methodology-section">Methodology</h2>
-        <p>The solver employs finite difference methods (FDM) to discretize the heat conduction equation. For steady-state problems, the Poisson equation is solved using iterative methods, while transient problems use implicit time-stepping for numerical stability.</p>
+        <h2 id="model-efficacy">Model Efficacy</h2>
+        <ul>
+            <li><strong>2nd Order Spatial Accuracy:</strong> 1D and 2D steady-state solvers are second-order accurate in space. Ghost nodes are employed to handle flux boundary conditions, maintaining second-order accuracy at the boundary.</strong></li>
+            <li><strong>1st Order Temporal Accuracy:</strong> 2D transient solvers are first-order accurate in time. Models are designed for small time steps to ensure accuracy.</strong></li>
+            <li><strong>Hand Calculations:</strong> 1D steady-state thermal solvers were validated using hand calculation with a variety of boundary conditions. Results were compared to the simulation results and the error was found to be less than 1%.</strong></li>
+            <li><strong>Grid Convergence:</strong> Solvers were run with different grid resolutions and the results were compared. Cases were found to be within 1% difference.</strong></li>
+        </ul>
+
+        <h2 id="future-work">Future Work</h2>
+        <ul>
+            <li><strong>2D Transient and Steady-State Validation:</strong> 2D transient and steady-state solvers will be validated against commerical solvers (Thermal Desktop).</li>
+            <li><strong>Ablation Modeling Validation:</strong> Ablation modeling will be validated against NASA's Porous-material Analysis Toolbox (PATO)</li>
+            <li><strong>Non-Symmetric Heat Flux Distribution:</strong> Heat shields entering at non-zero attack angles will be modeled, taking advantage of the solver's 3D capabilities.</li>
+            <li><strong>Higher Order Accuracy:</strong> Higher order finite difference schemes will be implemented to improve the accuracy of the solvers.</li>
+            <li><strong>Iterative Solving Methods:</strong> Higher order schemes often necessitate the use of iterative/implicit solving methods (ie. Gauss-Seidel method)to handle the computational cost.</li>
+        </ul>
         
-        <p>The ablation model implements a sophisticated energy balance approach: when material elements reach the sublimation temperature, latent heat is accumulated until sufficient energy is available for phase change. The surface then recedes, and boundary conditions are dynamically updated to reflect the new geometry.</p>
-        
-        <p>Grid convergence is ensured through proper scaling of source terms and validation studies. The cylindrical coordinate system enables accurate modeling of axisymmetric geometries common in aerospace applications.</p>
-
-        <h2 id="usage">Usage Example</h2>
-        <p>Here's how to run a 3D heat shield simulation:</p>
-        <div class="code-snippet">
-            <pre>from cfd.solvers.ablative_heat_shield import solve_heat_shield_3d
-
-# Run 3D cylindrical heat shield simulation
-r, theta, z, transient = solve_heat_shield_3d(
-    Nr=50, Ntheta=50, Nz=50,      # Grid resolution
-    R=80, thickness=0.05,          # Geometry parameters
-    time=150, dt=1,                # Time stepping
-    k=0.04, rho=270, cp=1100,      # Material properties
-    initial_temp=0,                # Initial conditions
-    sub_temp=3500,                 # Sublimation temperature
-    sub_heat=2500000               # Latent heat of sublimation
-)</pre>
-        </div>
-
         <h2 id="technologies">Technologies & Tools</h2>
         <div class="tech-stack">
             <span class="tech-tag">Python</span>
+            <span class="tech-tag">Finite Difference Methods</span>
             <span class="tech-tag">NumPy</span>
             <span class="tech-tag">SciPy</span>
             <span class="tech-tag">Matplotlib</span>
-            <span class="tech-tag">Finite Difference Methods</span>
-            <span class="tech-tag">CFD</span>
-            <span class="tech-tag">Heat Transfer</span>
+            <span class="tech-tag">Heat Conduction Physics</span>
             <span class="tech-tag">Ablation Modeling</span>
             <span class="tech-tag">Numerical Methods</span>
             <span class="tech-tag">Computational Physics</span>
         </div>
 
-        <h2 id="visualizations">Visualizations</h2>
-        <p>Visualization capabilities include animated 2D temperature fields, cylindrical coordinate plots, and cross-sectional analysis. These tools enable comprehensive understanding of thermal behavior and validation of results.</p>
-        <div class="image-placeholder">
-            📊 Add visualization images here (temperature contours, ablation progression, etc.)
-        </div>
-
         <h2 id="links">Project Links</h2>
         <div class="project-links">
             <a href="https://github.com/jonathanavillegas/cfd" target="_blank">🔗 View on GitHub</a>
-            <a href="https://github.com/jonathanavillegas/cfd" target="_blank">📖 Documentation</a>
         </div>
         </div>
     </div>
