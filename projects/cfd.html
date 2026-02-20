@@ -19,6 +19,10 @@
             scroll-behavior: smooth;
         }
         
+        html {
+            scroll-padding-top: 2rem;
+        }
+        
         .back-link {
             display: inline-block;
             margin: 2rem;
@@ -89,11 +93,144 @@
             font-style: italic;
         }
         
+        .content-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            padding: 2rem 1rem;
+            background: white;
+            border-right: 2px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+        
         .project-content {
+            flex: 1;
             max-width: 1000px;
             margin: 0 auto;
             padding: 4rem 2rem;
             background: white;
+            position: relative;
+        }
+        
+        
+        .sidebar h5 {
+            margin: 0 0 1rem 0;
+            color: #1e3c72;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar ul ul {
+            margin-left: 1rem;
+            margin-top: 0.25rem;
+        }
+        
+        .sidebar ul ul ul {
+            margin-left: 1.5rem;
+        }
+        
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar a {
+            color: #444;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.4rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar a:hover {
+            background: #f0f7ff;
+            color: #1e88e5;
+            padding-left: 0.75rem;
+        }
+        
+        .sidebar a.h2-link {
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 0.95rem;
+        }
+        
+        .sidebar a.h3-link {
+            font-weight: 500;
+            color: #2a5298;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar a.h4-link {
+            font-weight: 400;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .sidebar li.has-children > a {
+            cursor: pointer;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+        
+        .sidebar li.has-children > a::after {
+            content: '▶';
+            position: absolute;
+            right: 0.5rem;
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+            color: #666;
+        }
+        
+        .sidebar li.has-children:not(.collapsed) > a::after {
+            content: '▼';
+        }
+        
+        .sidebar li.has-children.collapsed > ul {
+            display: none;
+        }
+        
+        .sidebar li.has-children:not(.collapsed) > ul {
+            display: block;
+        }
+        
+        @media (max-width: 1000px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+                position: relative;
+                max-height: none;
+                padding: 1rem;
+            }
+            
+            .project-content {
+                padding: 2rem 1.5rem;
+            }
         }
         
         .project-content h2 {
@@ -283,6 +420,16 @@
         
         .project-image:hover {
             transform: scale(1.02);
+        }
+        
+        .project-image.small {
+            max-width: 500px;
+            margin: 1rem auto;
+        }
+        
+        .project-image.smaller {
+            max-width: 350px;
+            margin: 1rem auto;
         }
         
         .image-placeholder {
@@ -488,12 +635,42 @@
         <p class="applications">Thermal Protection Systems • Ablative Materials • Spacecraft Reentry</p>
     </div>
 
+    <div class="content-wrapper">
+        <div class="sidebar">
+            <h5>Contents</h5>
+            <ul>
+                <li><a href="#overview" class="h2-link">Overview</a></li>
+                <li><a href="#key-features" class="h3-link">Key Features</a></li>
+                <li class="has-children">
+                    <a href="#use-case" class="h2-link">Demonstrated Use Case</a>
+                    <ul>
+                        <li><a href="#mission" class="h3-link">The Mission</a></li>
+                        <li class="has-children">
+                            <a href="#methodology" class="h3-link">Model Methodology</a>
+                            <ul>
+                                <li><a href="#heat-transfer-eq" class="h4-link">Heat Transfer Equation</a></li>
+                                <li><a href="#discretization" class="h4-link">Discretization</a></li>
+                                <li><a href="#provided-params" class="h4-link">Provided Parameters</a></li>
+                                <li><a href="#numerical-methods" class="h4-link">Numerical Methods</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#results" class="h3-link">Results</a></li>
+                    </ul>
+                </li>
+                <li><a href="#methodology-section" class="h2-link">Methodology</a></li>
+                <li><a href="#usage" class="h2-link">Usage Example</a></li>
+                <li><a href="#technologies" class="h2-link">Technologies & Tools</a></li>
+                <li><a href="#visualizations" class="h2-link">Visualizations</a></li>
+                <li><a href="#links" class="h2-link">Project Links</a></li>
+            </ul>
+    </div>
+
     <div class="project-content">
-        <h2>A thermal modeling package designed for solving complex heat conduction problems</h2>
-        <p>The package provides comprehensive tools for steady-state and transient thermal analysis, with specialized capabilities for modeling ablative materials used in spacecraft heat shields. The solvers handle 1-3D geometries, Dirichlet and Neumann boundary conditions, and material phase changes with high accuracy and computational efficiency.</p>
+        <h2 id="overview">A thermal modeling package designed for solving complex heat conduction problems</h2>
+        <p>This Python package provides comprehensive thermal modeling capabilities for steady-state and transient thermal analysis, with specialized capabilities for modeling ablative materials used in spacecraft heat shields. The solvers handle 1-3D geometries, Dirichlet and Neumann boundary conditions, and material phase changes with high accuracy and computational efficiency.</p>
 
         <div class="highlight-box">
-            <h3>Key Features</h3>
+            <h3 id="key-features">Key Features</h3>
             <div class="applications-grid">
                 <div class="application-card">
                     <h4>Steady State Analysis</h4>
@@ -518,14 +695,14 @@
             </div>
         </div>
         
-        <h2>Demonstrated Use Case: 3D Ablative Heat Shield Model</h2>
+        <h2 id="use-case">Demonstrated Use Case: 3D Ablative Heat Shield Model</h2>
 
-        <h3>The Mission</h3>
+        <h3 id="mission">The Mission</h3>
         <p>Model the performance of a circular ablative heat shield to ensure it can protect a spacecraft from extreme heat during reentry.</p>
 
-        <h3>Model Methodology</h3>
+        <h3 id="methodology">Model Methodology</h3>
 
-        <h4>Heat Transfer Equation</h4>
+        <h4 id="heat-transfer-eq">Heat Transfer Equation</h4>
         <p>Assuming internal gas convection is negligible, the differential equation we seek to solve is:</p>
         <div class="equations-layout">
             <div class="equations-column">
@@ -623,6 +800,10 @@
         <p style="font-size: 0.9rem; color: #666; font-style: italic; margin-top: 0.5rem;">
             Source: <a href="https://ntrs.nasa.gov/api/citations/20170011453/downloads/20170011453.pdf" target="_blank" style="color: #1e88e5;">Beck, R. A. S. (2017). Ablative Thermal Protection Systems Fundamentals. NASA Ames Research Center.</a>
         </p>
+        <p>This equation includes the terms for storage, diffusion, and pyrolysis. The pyrolysis term is responsible for the ablation of the material, and is derived from the Arrhenius equation. The Arrhenius equation is a mathematical model that describes the rate of a chemical reaction as a function of temperature.</p>
+        <p>In order to model the destruction of the material, it is assumed all materials are destroyed via sublimation. A threshold sublimation temperature is used. When the temperature of a node reaches the threshold temperature, the temperature does not raise. Instead all additional thermal energy goes to latent heat of sublimation. When the latent heat threshold is reached, the node is marked as destroyed. The flux condition is then applied to the node directly below and the surface is updated.</p>
+        <p><strong>Sublimation temperature:</strong> <em>T<sub>sub</sub></em> [K]</p>
+        <p><strong>Latent heat of sublimation:</strong> <em>ΔH<sub>sub</sub></em> [J/kg]</p>
         <p>In order to model the heat flux applied to the surface, we use a flux (Neumann) boundary condition of the form:</p>
         <div class="equations-layout">
             <div class="equations-column">
@@ -672,19 +853,37 @@
             </div>
         </div>
 
-        <h4>Provided Parameters</h4>
+        <h4 id="discretization">Discretization</h4>
+        <p>Cylindrical coordinates (r, θ, z) model the circular geometry in 3D. Central difference scheme provides second-order spatial accuracy in all directions. Special handling at r=0 using L'Hôpital's rule avoids coordinate singularity.</p>
+        <img src="pics/mesh.png" alt="Mesh geometry" class="project-image small" onerror="this.style.display='none'">
         <ul>
-            <li><strong>Geometry:</strong> Circular heat shield in cylindrical coordinates (r, θ, z) with radius <em>R</em> and thickness</li>
-            <li><strong>Heat Flux Distribution:</strong> Radially varying flux based on reentry data. Symmetric about θ = 90° for 90° AoA, with 3D capability for future non-symmetric cases</li>
-            <li><strong>Material Properties:</strong> Thermal conductivity <em>k</em>, density <em>ρ</em>, specific heat <em>c<sub>p</sub></em>, sublimation temperature, and latent heat of sublimation</li>
+        <h4 id="provided-params">Provided Parameters</h4>
+        
+            <li><strong>Heat Flux Distribution:</strong> Radially varying flux applied to the surface. Current implementation is for a 0° attack angle (symmetric about the z-axis), but the code is designed to handle non-symmetric cases.</li>
+        </ul>
+        <img src="pics/fluxDistribution.png" alt="Heat flux distribution" class="project-image smaller" onerror="this.style.display='none'">
+        <p style="font-size: 0.9rem; color: #666; font-style: italic; margin-top: 0.5rem;">
+            Source: <a href="https://www.mdpi.com/2226-4310/10/3/310" target="_blank" style="color: #1e88e5;">MDPI Aerospace (2023)</a>
+        </p>
+        <ul>
+            <li><strong>Material Properties:</strong> Approximate values for a typical ablative material are used.
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li><strong>Thermal conductivity (<em>k</em>):</strong> 0.04 W/(m·K) </li>
+                    <li><strong>Density (<em>ρ</em>):</strong> 270 kg/m³ </li>
+                    <li><strong>Specific heat capacity (<em>c<sub>p</sub></em>):</strong> 1100 J/(kg·K) </li>
+                    <li><strong>Sublimation temperature (<em>T<sub>sub</sub></em>):</strong> 3500 K </li>
+                    <li><strong>Latent heat of sublimation (<em>ΔH<sub>sub</sub></em>):</strong> 2500000 J/kg </li>
+                    <li><strong>Pre-exponential factor (<em>k<sub>0</sub></em>):</strong> 1e4 1/s </li>
+                    <li><strong>Activation energy (<em>E</em>):</strong> 150000 J/mol </li>
+                    <li><strong>Reaction enthalpy (<em>ΔH<sub>r</sub></em>):</strong> 500000 J/kg </li>
+                    <li><strong>Char density (<em>ρ<sub>r</sub></em>):</strong> 50 kg/m³ </li>
+                </ul>
+            </li>
         </ul>
 
-        <h4>Discretization</h4>
-        <p>Cylindrical coordinates (r, θ, z) model the circular geometry. Central difference scheme provides second-order spatial accuracy. Special handling at r=0 using L'Hôpital's rule avoids coordinate singularity.</p>
-
-        <h4>Numerical Methods</h4>
+        <h4 id="numerical-methods">Numerical Methods</h4>
         <ul>
-            <li><strong>Transient Analysis:</strong> Forward difference in time with implicit spatial discretization (first-order temporal, second-order spatial accuracy)</li>
+            <li><strong>Transient Analysis:</strong> Forward difference time and centered spacial differencing used to explicitly solve the heat equation at each time step (first-order temporal, second-order spatial accuracy)</li>
             <li><strong>Ablative Material Physics:</strong>
                 <ul>
                     <li>Materials sublimate when sublimation temperature is reached</li>
@@ -701,17 +900,17 @@
             </li>
         </ul>
 
-        <h3>Results</h3>
+        <h3 id="results">Results</h3>
         <p></p>
 
-        <h2>Methodology</h2>
+        <h2 id="methodology-section">Methodology</h2>
         <p>The solver employs finite difference methods (FDM) to discretize the heat conduction equation. For steady-state problems, the Poisson equation is solved using iterative methods, while transient problems use implicit time-stepping for numerical stability.</p>
         
         <p>The ablation model implements a sophisticated energy balance approach: when material elements reach the sublimation temperature, latent heat is accumulated until sufficient energy is available for phase change. The surface then recedes, and boundary conditions are dynamically updated to reflect the new geometry.</p>
         
         <p>Grid convergence is ensured through proper scaling of source terms and validation studies. The cylindrical coordinate system enables accurate modeling of axisymmetric geometries common in aerospace applications.</p>
 
-        <h2>Usage Example</h2>
+        <h2 id="usage">Usage Example</h2>
         <p>Here's how to run a 3D heat shield simulation:</p>
         <div class="code-snippet">
             <pre>from cfd.solvers.ablative_heat_shield import solve_heat_shield_3d
@@ -728,7 +927,7 @@ r, theta, z, transient = solve_heat_shield_3d(
 )</pre>
         </div>
 
-        <h2>Technologies & Tools</h2>
+        <h2 id="technologies">Technologies & Tools</h2>
         <div class="tech-stack">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">NumPy</span>
@@ -742,16 +941,17 @@ r, theta, z, transient = solve_heat_shield_3d(
             <span class="tech-tag">Computational Physics</span>
         </div>
 
-        <h2>Visualizations</h2>
+        <h2 id="visualizations">Visualizations</h2>
         <p>Visualization capabilities include animated 2D temperature fields, cylindrical coordinate plots, and cross-sectional analysis. These tools enable comprehensive understanding of thermal behavior and validation of results.</p>
         <div class="image-placeholder">
             📊 Add visualization images here (temperature contours, ablation progression, etc.)
         </div>
 
-        <h2>Project Links</h2>
+        <h2 id="links">Project Links</h2>
         <div class="project-links">
             <a href="https://github.com/jonathanavillegas/cfd" target="_blank">🔗 View on GitHub</a>
             <a href="https://github.com/jonathanavillegas/cfd" target="_blank">📖 Documentation</a>
+        </div>
         </div>
     </div>
 
@@ -759,6 +959,43 @@ r, theta, z, transient = solve_heat_shield_3d(
         <p>&copy; 2024 Jonathan Villegas</p>
     </footer>
     
+    <script>
+        // Handle collapsible sidebar menus
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (!sidebar) return;
+            
+            const itemsWithChildren = sidebar.querySelectorAll('li.has-children');
+            
+            // Start all items collapsed
+            itemsWithChildren.forEach(item => {
+                item.classList.add('collapsed');
+            });
+            
+            itemsWithChildren.forEach(item => {
+                // Get the first anchor tag that is a direct child
+                const link = item.children[0];
+                
+                if (!link || link.tagName !== 'A') return;
+                
+                // Prevent default navigation when clicking on parent items
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    item.classList.toggle('collapsed');
+                });
+                
+                // Allow child links to navigate normally
+                const childLinks = item.querySelectorAll('ul a');
+                childLinks.forEach(childLink => {
+                    childLink.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Allow normal navigation
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 
